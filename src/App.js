@@ -19,6 +19,20 @@ class App extends Component {
     this.setState({ recipes: data.recipes });
     console.log(this.state.recipes);
   };
+
+  componentDidMount = () => {
+    //grabs the information in the localStorage.setItem below
+    const json = localStorage.getItem("recipes");
+    const recipes = JSON.parse(json);
+    this.setState({ recipes: recipes });
+  };
+
+  //this makes the search results still appear when the user clicks to return home from the single recipe page
+  componentDidUpdate = () => {
+    const recipes = JSON.stringify(this.state.recipes);
+    localStorage.setItem("recipes", recipes);
+  };
+
   render() {
     return (
       <div className="App">

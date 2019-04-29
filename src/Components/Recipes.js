@@ -1,4 +1,6 @@
 import React from "react";
+
+import { Link } from "react-router-dom";
 //the props, allows us to receive the incoming props from the App.js file
 const Recipes = props => (
   //props.recipes receives the this.state.recipes information
@@ -27,7 +29,18 @@ const Recipes = props => (
                 </h5>
                 <p className="recipes__subtitle">{recipe.publisher}</p>
               </div>
-              <button className="recipe_buttons">View Recipe</button>
+              <button className="recipe_buttons">
+                <Link
+                  to={{
+                    pathname: `/recipe/${recipe.recipe_id}`,
+                    state: {
+                      recipe: recipe.title
+                    }
+                  }}
+                >
+                  View Recipe
+                </Link>
+              </button>
             </div>
           </div>
         );
